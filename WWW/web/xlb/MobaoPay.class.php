@@ -92,11 +92,6 @@ class MbPay {
 		return implode($array, '&');
 	}
 
-	/**
-	 * @name	生成签名
-	 * @param	sourceData
-	 * @return	签名数据
-	 */
 	public function sign($data) {
 		$signature = MD5($data.$this->mbpKey);
 		return $signature;
