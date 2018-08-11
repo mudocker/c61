@@ -1,0 +1,58 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>支付宝扫码支付</title>
+<link href="./japay/tpl/css/style.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+<div class="sweep">
+   <div class="wrap">
+      <div class="h100" id="res">
+         <div class="m26" style="font-size:14px;">
+               <h1><div id="msg">订单提交成功，请您尽快付款！</div></h1>
+               <div class="num"><span>商户订单号:{$payinfo.trano}</span>
+               <br />
+               <span>商品信息:<font  color=#ff6400 style="font-size:15px;"></font></span>
+               <span class="color1 ml16">请您在提交订单后 <span class="orange">10分钟</span> 内完成支付，否则订单会自动取消。</span></div>
+         </div>
+      </div>
+<!--订单信息代码结束-->
+<!--扫描代码-->
+      <div class="s-con" id="codem">
+         <div class="title"><span class="blue" style="font-size:20px;">应付金额：</span><span class="orange">{$payinfo.amount}</span> 元
+		 <br><span style="font-size:12px;">此交易委托支付宝（中国）网络技术有限公司代收款</span></div>
+         <div class="scan_zfb"><img src="{$codepic}" /></div>
+         <div class="question">
+            <div class="new"></div>
+         </div>
+      </div>
+<!--扫描代码结束-->
+<!--底部代码-->
+      <div class="s-foot">支付网关版权所有 2012-2016</div>
+<!--底部代码结束-->
+   </div>
+</div>
+<script src="./japay/tpl/js/jquery-1.8.0.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+	$(function () {
+		window.setInterval("getData();",5000);
+	});
+	function getData() {
+		$.post("/Apijiekou.checkrechargeisok", { trano: "{$payinfo.trano}", t: Math.random() }, function (result) {
+			if (result.sign == true) {
+				if(result.state!=0){
+					if(result.state==1){
+						alert('充值成功');
+					}else if(result.state==-1){
+						alert('充值失败');
+					}
+					window.location.href = "/Member.orderform?tabid=rechargelist";
+				}
+			}
+		},'json');
+	};
+</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+﻿body {font-size:12px; font-family:"微软雅黑", "黑体",Arial, Helvetica; padding:0; margin:0;}
+.divhead {
+    width:100%;height: 80px;background-color: #FAFAFA;position:absolute;zoom:1;
+}
+.divtitle {
+    left:12%;position:absolute;
+}
+.divtitle img{
+    height:65px; width:160px;
+}
+.divbody {
+    width:100%;height:650px;position:absolute;top:80px;zoom:1
+}
+.divcontentleft {
+    left:20%;height:25px;position:absolute;top:60px;font-size:25px;font-weight:bold;
+}
+.divcontentright {
+    right:20%;height:25px;position:absolute;top:60px;font-size:25px;font-weight:bold;
+}
+.divcontent2 {
+    left:20%;height:17px;position:absolute;top:95px;font-size:16px;color:#838383;_margin-top:40px;
+}
+.divcontent3 {
+    left:20%;height:37px;position:absolute;top:120px;font-size:19px;color:#4E4E4E;_margin-top:70px;display:inline-block;float:left;
+}
+    .divcontent3 a {float:left;
+    }
+.divcontent3_left {
+    float:left;line-height:35px;
+}
+    .divcontent3_wx{
+        width:37px;height:37px;display:block;cursor:pointer;border:0px;
+    }
+    .divcontent3_zfb{
+        width:37px;height:37px;display:block;cursor:pointer;border:0px;
+    }
+.divCode {
+  width:547px;height:390px;background:url(../images/wxtel.jpg) no-repeat; margin-left: auto;margin-right: auto;margin-top: 15%;
+}
+    .divCode canvas {margin-top: 137px;margin-left: 167px;
+    }
+    .divCode table {margin-top: 137px;margin-left: 167px;position:absolute;
+    }
+.divCode img {
+   width:190px;height:190px;z-index:-1;margin-top: 137px;margin-left: 167px;border:0px;
+}
+/*.divCode_zfb {
+    width:547px;height:390px;background:url(../../images/zfbcode.jpg) no-repeat; margin-left: auto;margin-right: auto;margin-top: 15%;
+}
+ .divCode_zfb canvas {margin-top: 137px;margin-left: 167px;
+    }
+     .divCode_zfb table {margin-top: 137px;margin-left: 167px;position:absolute;
+    }
+.divCode_zfb img {
+   width:190px;height:190px;z-index:-1;margin-top: 137px;margin-left: 167px;border:0px;
+}*/
+.divdesc {
+    height:17px;font-size:16px;color:#939393;margin-left: auto;margin-right: auto;text-align:center;margin-top:20px;
+}
+.divfoot {
+     width:100%;height:90px;background-color:#0099FF;position:fixed;bottom:0px;zoom:1
+}
+/*.divfoot_zfb {
+     width:100%;height:90px;background-color:#467ACF;position:fixed;bottom:0px;zoom:1
+}*/
+.divversion {
+    height:12px;color:#EDEDED;text-align:center;margin-left: auto;margin-right: auto;margin-top:30px;
+}
+

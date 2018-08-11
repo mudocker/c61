@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>欢迎使用微信支付</title>
+</head>
+<link href="./japay/tpl/css/css_new.css" rel="stylesheet" />
+<body>
+    <div class="divhead">
+        <div class="divtitle">
+            <img src="./japay/tpl/images/wxzf.jpg" />
+        </div>
+    </div>
+    <div class="divbody">
+        <div class="divcontentleft">
+            订单提交成功，请您尽快付款！
+        </div>
+        <div class="divcontentright">
+            应付金额：<font color="red">{$payinfo.amount}</font>
+        </div>
+        <div class="divcontent2">
+            请您在提交订单后<font color="#FF7D00">5分钟</font>内完成支付，否则订单会自动取消
+        </div>
+        <div class="divcontent3">
+            <div class="divcontent3_left">订单号:{$payinfo.trano}，<font color="red">订单查询</font></div>
+        </div>
+        <div class="divCode">
+
+            <img  src="{$codepic}" width="190px" height="190px" />
+        </div>
+        <div class="divdesc">
+            请使用微信"扫一扫"扫描二维码以完成支付
+        </div>
+    </div>
+    
+    <div id="ads"></div>
+<script src="./japay/tpl/js/jquery-1.8.0.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+	$(function () {
+		window.setInterval("getData();",5000);
+	});
+	function getData() {
+		$.post("/Apijiekou.checkrechargeisok", { trano: "{$payinfo.trano}", t: Math.random() }, function (result) {
+			if (result.sign == true) {
+				if(result.state!=0){
+					if(result.state==1){
+						alert('充值成功');
+					}else if(result.state==-1){
+						alert('充值失败');
+					}
+					window.location.href = "/Member.orderform?tabid=rechargelist";
+				}
+			}
+		},'json');
+	};
+</script>
+</body>
+</html>

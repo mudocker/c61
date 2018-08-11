@@ -1,0 +1,3 @@
+<?php
+//000000000600a:9:{i:0;a:2:{s:7:"groupid";s:1:"1";s:10:"shengjiedu";s:1:"0";}i:1;a:2:{s:7:"groupid";s:1:"2";s:10:"shengjiedu";s:2:"10";}i:2;a:2:{s:7:"groupid";s:1:"3";s:10:"shengjiedu";s:3:"200";}i:3;a:2:{s:7:"groupid";s:1:"4";s:10:"shengjiedu";s:4:"1000";}i:4;a:2:{s:7:"groupid";s:1:"5";s:10:"shengjiedu";s:5:"10000";}i:5;a:2:{s:7:"groupid";s:1:"6";s:10:"shengjiedu";s:5:"50000";}i:6;a:2:{s:7:"groupid";s:1:"7";s:10:"shengjiedu";s:6:"250000";}i:7;a:2:{s:7:"groupid";s:1:"8";s:10:"shengjiedu";s:7:"1000000";}i:8;a:2:{s:7:"groupid";s:1:"9";s:10:"shengjiedu";s:7:"5000000";}}
+?>
