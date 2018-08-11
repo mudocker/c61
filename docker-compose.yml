@@ -1,0 +1,42 @@
+version: '3.3'
+services:
+  db:
+    build:
+      ./docker/db
+    container_name: db
+    image: dockerliweipei/c61:db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test
+      LANG: C.UTF-8
+    ports:
+      - 3306:3306
+    restart : always
+  qian:
+    hostname: qian
+    container_name: qian
+    build:
+      ./docker/qian
+    image:  dockerliweipei/c61:qian
+    ports:
+      - 80:80
+    links:
+      - db
+      - redis
+  admin:
+     build:
+       ./docker/admin
+     image:  dockerliweipei/c61:admin
+     hostname: admin
+     container_name: admin
+     ports:
+      - 81:80
+     links:
+       - db
+       - redis
+  redis:
+    container_name: redis
+    hostname: redis
+    image: redis:latest
+    ports:
+      - 6379:6379
