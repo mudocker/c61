@@ -53,8 +53,8 @@ class CaijiController extends Controller {
 	static function apicaiji($cpinfo){
 		$caijieapiurl = GetVar('caijieapiurl');
 		$apiurl = $caijieapiurl."/Api.Open.kj.code.".$cpinfo['name'].".do";
-		$class = "\\Lib\\apicaiji\\{$cpinfo['name']}";
-		//dump($class);exit;
+       $name=$cpinfo['name'];
+		$class = "\\Lib\\apicaiji\\{$name}";
 		$_obj  = new $class($apiurl);
 		$return = $_obj->getopencode($ApiParam);
 		return $return;
@@ -71,11 +71,9 @@ class CaijiController extends Controller {
 		$_t = time();
 		$_t1 = strtotime(date('Y-m-d '.$cpinfo['closetime1'],$_t));
 		$_t2 = strtotime(date('Y-m-d '.$cpinfo['closetime2'],$_t));
-		if($_t<$_t1){
-			$actNo_t = $totalcount;
-		}else{
-			$actNo_t = (time()-strtotime(date('Y-m-d '.$cpinfo['closetime1'],$_t))+$cjnowtime)/$_expecttime;
-		}
+		if($_t<$_t1) $actNo_t = $totalcount;
+		else $actNo_t = (time()-strtotime(date('Y-m-d '.$cpinfo['closetime1'],$_t))+$cjnowtime)/$_expecttime;
+
 		$actNo_t = floor($actNo_t);
 		$actNo =  is_numeric($actNo_t)?($actNo_t==$totalcount?1:$actNo_t):floor( $actNo_t );
 		//$actNo =  floor( (time()-strtotime($cpinfo['closetime1']))/($cpinfo['expecttime']*60) );

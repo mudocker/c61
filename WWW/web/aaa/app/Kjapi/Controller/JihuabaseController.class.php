@@ -987,7 +987,7 @@ class JihuabaseController extends CommonController
 	}
 	protected function rand_string($_var_322 = 6, $_var_323 = 0, $_var_324 = '')
 	{
-		$_var_325 = new \Org\Util\String();
+		$_var_325 = new \Org\Util\StringEx;
 		$_var_326 = $_var_325->randString($_var_322, $_var_323, $_var_324);
 		return $_var_326;
 	}

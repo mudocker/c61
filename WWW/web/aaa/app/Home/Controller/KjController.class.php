@@ -287,7 +287,7 @@ protected function gettrano($rand=4){
 	return $trano;
 }
 protected function rand_string($len=6,$type=0,$addChars='') {
-	$String      = new \Org\Util\String;
+	$String      =new \Org\Util\StringEx;
 	$randString  = $String->randString($len,$type,$addChars);
     return $randString;
 }

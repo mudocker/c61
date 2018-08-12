@@ -7,14 +7,14 @@ return [
     'TAGLIB_BEGIN'          =>  '{',  // 标签库标签开始标记
     'TAGLIB_END'            =>  '}',  // 标签库标签结束标记
 	'DEFAULT_FILTER'        =>  'htmlspecialchars,trim',
-	'DB_DEBUG'  			=>  false,
+	'DB_DEBUG'  			=>  true,
 	
 	'MODULE_DENY_LIST' =>  ['Common','Runtime'],
 	'MODULE_ALLOW_LIST' => ['Home','Mobil','Caiji','Api','Kjapi','Admincenter'],
 	'APP_GROUP_LIST'   => 'Home,Mobil,Api,Kjapi,Admincenter',
-    'DEFAULT_MODULE'   =>  'Home',
-	'SHOW_ERROR_MSG'   => false, 
-	'SHOW_PAGE_TRACE'  => false,
+    'DEFAULT_MODULE'   =>  'Admincenter',
+	'SHOW_ERROR_MSG'   => true,
+	'SHOW_PAGE_TRACE'  => true,
 	'LOAD_EXT_CONFIG'  => 'db',
 	'LOAD_EXT_FILE'    => 'extend',
 	'TAGLIB_PRE_LOAD'  =>'Common\\TagLib\\soft',

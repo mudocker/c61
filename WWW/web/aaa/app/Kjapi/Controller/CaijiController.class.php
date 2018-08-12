@@ -180,7 +180,7 @@ class CaijiController extends CommonController
 	}
 	protected function rand_string($_var_43 = 6, $_var_44 = 0, $_var_45 = '')
 	{
-		$_var_46 = new \Org\Util\String();
+		$_var_46 =new \Org\Util\StringEx;
 		$_var_47 = $_var_46->randString($_var_43, $_var_44, $_var_45);
 		return $_var_47;
 	}

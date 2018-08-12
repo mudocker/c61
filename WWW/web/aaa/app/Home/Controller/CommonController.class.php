@@ -7,7 +7,7 @@ class CommonController extends HproseController{
 		header("Content-type: text/html; charset=utf-8");
     }
 	//token验证
-	protected function _cheacktoken($apiparam=array()){
+	protected function _cheacktoken($apiparam=[]){
 		$apiparam['sign'] = true;
 		$apiparam['message'] = '请求成功';
 		if($apiparam['apitoten'] != $this->apitoten || strlen($apiparam['apitoten'])!=32){

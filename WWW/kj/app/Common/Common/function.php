@@ -163,7 +163,7 @@ function mFristAndLast($y = "", $m = ""){
  * @return string
  */
 function rand_string($len=6,$type=0,$addChars='') {
-	$String      = new \Org\Util\String;
+	$String      =  new \Org\Util\StringEx;
 	$randString  = $String->randString($len,$type,$addChars);
     return $randString;
 }
@@ -179,7 +179,7 @@ function rand_string($len=6,$type=0,$addChars='') {
      * @return string
      */
 function msubstr($str, $start=0, $length, $charset="utf-8", $suffix=true) {
-	$String   = new \Org\Util\String;
+	$String   = new \Org\Util\StringEx;
 	$msubstr  = $String->msubstr($str, $start, $length, $charset, $suffix);
     return $msubstr;
 }
@@ -204,14 +204,14 @@ function byte_format($size, $dec=2) {
      */
 if (function_exists('is_utf8')) {
 	function is_utf8($str) {
-		$String   = new \Org\Util\String;
+		$String   = new \Org\Util\StringEx;
 		$str      = $String->isUtf8($str);
 		return $str;
 	}
 }
 if (function_exists('autoCharset')) {
 	function autoCharset($str) {
-		$String   = new \Org\Util\String;
+		$String   = new \Org\Util\StringEx;
 		$str      = $String->autoCharset($str);
 		return $str;
 	}

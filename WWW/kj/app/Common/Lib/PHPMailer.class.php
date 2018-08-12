@@ -2310,7 +2310,7 @@ class PHPMailer {
   /**
    * Changes every end of line from CRLF, CR or LF to $this->LE.
    * @access public
-   * @param string $str String to FixEOL
+   * @param string $str StringEx to FixEOL
    * @return string
    */
   public function FixEOL($str) {
@@ -2512,7 +2512,7 @@ class PHPMailer {
   /**
    * Strips newlines to prevent header injection.
    * @access public
-   * @param string $str String
+   * @param string $str StringEx
    * @return string
    */
   public function SecureHeader($str) {

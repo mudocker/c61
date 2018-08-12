@@ -15,11 +15,8 @@ class PayController extends CommonController {
 		$apiparam = self::_cheacktoken($apiparam);
 		if(!$apiparam['sign'])return $apiparam;
 		$uid      = $apiparam['uid'];
-		$username = $apiparam['username'];
 		$paytype  = $apiparam['paytype'];
 		$trano    = $apiparam['trano'];
-		$amount   = $apiparam['amount'];
-		$id = $apiparam['id'];
 		$payinfo = M('recharge')->where(['trano'=>$trano,'paytype'=>$paytype])->find();
 		if($payinfo['uid']!=$uid){
 			$apiparam['sign']=false;

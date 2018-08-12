@@ -1,15 +1,7 @@
 <?php
-// +----------------------------------------------------------------------
-// | ThinkPHP [ WE CAN DO IT JUST THINK IT ]
-// +----------------------------------------------------------------------
-// | Copyright (c) 2009 http://thinkphp.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: liu21st <liu21st@gmail.com>
-// +----------------------------------------------------------------------
+
 namespace Org\Util;
-class String {
+class StringEx {
 
     /**
      * 生成UUID 单机使用
@@ -34,7 +26,7 @@ class String {
      * @return Boolean
      */
     static public function keyGen() {
-        return str_replace('-','',substr(String::uuid(),1,-1));
+        return str_replace('-','',substr(StringEx::uuid(),1,-1));
     }
 
     /**
@@ -142,6 +134,54 @@ class String {
         return $str;
     }
 
+
+    static public function randStrings($len=6,$type='',$addChars='') {
+        $str ='';
+        switch($type) {
+            case 0:
+                $chars= str_repeat($addChars?$addChars:'0123456789',3);
+                break;
+            case 1:
+                $chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.$addChars;
+                break;
+            case 2:
+                $chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.$addChars;
+                break;
+            case 3:
+                $chars='abcdefghijklmnopqrstuvwxyz'.$addChars;
+                break;
+            case 4:
+                $chars='abcdefghijklmnopqrstuvwxyz0123456789'.$addChars;
+                break;
+            case 5:
+                $chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.$addChars;
+                break;
+            case 6:
+                $chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'.$addChars;
+                break;
+            case 7:
+                $chars='123456789';
+                break;
+            default :
+                // 默认去掉了容易混淆的字符oOLl和数字01，要添加请使用addChars参数
+                $chars='ABCDEFGHIJKMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789'.$addChars;
+                break;
+        }
+        if($len>10 ) {//位数过长重复字符串一定次数
+            $chars= $type==1? str_repeat($chars,$len) : str_repeat($chars,5);
+        }
+        if($type!=4) {
+            $chars   =   str_shuffle($chars);
+            $str     =   substr($chars,0,$len);
+        }else{
+            // 中文随机字
+            for($i=0;$i<$len;$i++){
+                $str.= self::msubstr($chars, floor(mt_rand(0,mb_strlen($chars,'utf-8')-1)),1,'utf-8',false);
+            }
+        }
+        return $str;
+    }
+
     /**
      * 生成一定数量的随机数，并且不重复
      * @param integer $number 数量
@@ -188,13 +228,13 @@ class String {
                 $char = substr($format,$i,1);
                 switch($char){
                     case "*"://字母和数字混合
-                        $strtemp   .= String::randString(1);
+                        $strtemp   .= StringEx::randString(1);
                         break;
                     case "#"://数字
-                        $strtemp  .= String::randString(1,1);
+                        $strtemp  .= StringEx::randString(1,1);
                         break;
                     case "$"://大写字母
-                        $strtemp .=  String::randString(1,2);
+                        $strtemp .=  StringEx::randString(1,2);
                         break;
                     default://其他格式均不转换
                         $strtemp .=   $char;
@@ -241,7 +281,8 @@ class String {
             }
             return $string;
         }
-        else return $string;
-
+        else {
+            return $string;
+        }
     }
 }

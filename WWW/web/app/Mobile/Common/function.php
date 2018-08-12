@@ -61,7 +61,7 @@ function serverIP(){
 	return gethostbyname($_SERVER["SERVER_NAME"]);   
 }
 function rand_strings($len=6,$type=0,$addChars='') {
-	$String      = new \Org\Util\String();
+	$String      = new \Org\Util\StringEx();
 	$randString  = $String->randStrings($len,$type,$addChars);
 	return $randString;
 }
