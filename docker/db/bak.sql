@@ -104,7 +104,7 @@ CREATE TABLE `caipiao_adminmember` (
 -- ----------------------------
 -- Records of caipiao_adminmember
 -- ----------------------------
-INSERT INTO `caipiao_adminmember` VALUES ('4', '1', 'admin', '', 'MDAwMDAwMDAwMLGIet6Ft62z', '123456', '120.239.128.13', '中国', '1525227056', '0');
+INSERT INTO `caipiao_adminmember` VALUES ('4', '1', 'admin', '', 'MDAwMDAwMDAwML2Lg9iZuph2', '123456', '120.239.128.13', '中国', '1525227056', '0');
 INSERT INTO `caipiao_adminmember` VALUES ('5', '1', 'ceshi', '', 'MDAwMDAwMDAwMLGIet6Gp7lr', '123456', '', '', '0', '0');
 INSERT INTO `caipiao_adminmember` VALUES ('6', '2', 'admin1', '', 'MDAwMDAwMDAwMLGIet6Gp7lr', '123456', '125.112.54.71', '浙江省金华市', '1525234818', '0');
 

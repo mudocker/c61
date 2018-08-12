@@ -112,11 +112,9 @@ class AdminmemberController extends CommonController {
 		if(!in_array($type,['pass','safecode'])){
 			$this->error('pass,safecode非法操作');exit;
 		}
-		if($type=='safecode'){
-			$this->assign('passtext',"旧安全密码");
-		}else{
-			$this->assign('passtext',"旧密码");
-		}
+		if($type=='safecode') $this->assign('passtext',"旧安全密码");
+		else                    $this->assign('passtext',"旧密码");
+
 		$this->assign('type',$type);
 		$admininfo = $this->admininfo;
 		$info = $this->_db->where(['id'=>$admininfo['id']])->find();
@@ -133,7 +131,7 @@ class AdminmemberController extends CommonController {
 				if(encrypt($oldpassword)!=$info['password']){
 					$this->error('旧密码错误！');exit;
 				}
-				if(strlen($password)<6 || strlen($password)>16){
+				if(strlen($password)<5 || strlen($password)>16){
 					$this->error('密码6~16位字符！');exit;
 				}
 				$password = encrypt($password);
@@ -154,16 +152,15 @@ class AdminmemberController extends CommonController {
 				session('admin_auth_id',NULL);
 				$this->success('修改成功,请重新登陆！');
 				
-			}else{
-				$this->error('修改失败！');
-			}
+			}else$this->error('修改失败！');
+
 			exit;
 		}
 		$this->assign('info',$info);
 		$this->display();
 	}
 	function delete(){
-		//$this->error('为防止恶意操作，该功能已禁止！');exit;
+
 		$id     = I('id');
 		if(!$id)$this->error('非法操作！');
 		$info = $this->_db->find($id);
