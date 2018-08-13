@@ -1050,6 +1050,7 @@ class MemberController extends CommonController {
 		}
 		return $apiparam;
 	}
+	//登录
 	function signin($apiparam=array()){
 		$apiparam = self::_cheacktoken($apiparam);
 		if(!$apiparam['sign'])return $apiparam;
@@ -1121,12 +1122,7 @@ class MemberController extends CommonController {
 		$timefag =$overtime - ($_t - $sessioninfo['time']);
 		 
 		if($sessioninfo){  //如果已经存在别登录就修改
-/*			if(!$nocode && $timefag>1){
-				$apiparam['sign']    = false;
-				$apiparam['message'] = "你的帐号已在别处登陆，是否重新登陆";
-				//return $apiparam;
-				$this->ajaxReturn($apiparam);exit;
-			}*/
+
 			$sessionint = M('membersession')->where(['userid'=>$userinfo['id']])->setField(['sessionid'=>$sid,'ip'=>$ip,'time'=>$_t]);
 		}else{//如果不存在别登录就添加
 			$sessiondata = [];
@@ -1138,16 +1134,7 @@ class MemberController extends CommonController {
 			$sessionint = M('membersession')->data($sessiondata)->add();
 		}
 		$onlineint  = M('member')->where(['id'=>$userinfo['id']])->setField(['onlinetime'=>$_t,'logintime'=>$_t,'loginip'=>$ip,'iparea'=>IParea($ip),'loginsource'=>strtolower($data["source"])]);
-		//$userinfo['groupname'] = $userinfo['proxy']==1?'代理':'普通会员';
-/*		if($userinfo['proxy']==1){
-			$userinfo['groupname'] = '普通代理';
-		}else{
-			if($userinfo['groupid']){
-				$userinfo['groupname'] = M('membergroup')->where(['groupid'=>$userinfo['groupid']])->getField('groupname');
-			}else{
-				$userinfo['groupname'] = '普通会员';
-			}
-		}*/
+
 		$apiparam['sign']    = true;
 		$apiparam['message'] = "登陆成功({$data['source']})";
 		$apiparam['data']['islogin']    = 1;

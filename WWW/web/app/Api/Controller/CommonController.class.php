@@ -75,14 +75,11 @@ class CommonController extends Controller{
 	$sessionint = M('membersession')->where(['userid'=>$userinfo['id']])->setField(['time'=>$_t]);
 	$onlineint  = M('member')->where(['id'=>$userinfo['id']])->setField(['onlinetime'=>$_t]);
 	
-	if($userinfo['proxy']==1){
-		$userinfo['groupname'] = '代理';
-	}else{
-		if($userinfo['groupid']){
-			$userinfo['groupname'] = M('membergroup')->where(['groupid'=>$userinfo['groupid']])->getField('membergroup');
-		}else{
-			$userinfo['groupname'] = '普通会员';
-		}
+	if($userinfo['proxy']==1)   $userinfo['groupname'] = '代理';
+	else{
+		if($userinfo['groupid'])  $userinfo['groupname'] = M('membergroup')->where(['groupid'=>$userinfo['groupid']])->getField('membergroup');
+		else                        $userinfo['groupname'] = '普通会员';
+
 	}
 	$apiparam['data'] = $userinfo;
 	

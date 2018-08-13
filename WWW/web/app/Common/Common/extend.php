@@ -115,6 +115,7 @@ function AbstractType(){
 	return $array;
 }
 function IParea($ip=''){
+  //  return '';
 	$ip = $ip?:get_client_ip();
 	$_Ip = new \Org\Net\IpLocation('UTFWry.dat'); // 实例化类 参数表示IP地址库文件
 	$area = $_Ip->getlocation($ip);
