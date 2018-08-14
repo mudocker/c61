@@ -1,8 +1,10 @@
 <?php
 
 if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
+define('WEBROOT',__DIR__);
+require_once WEBROOT .'/vendor/autoload.php';
 error_reporting(7);
-
+header('Access-Control-Allow-Origin:*');
 define('APP_DEBUG',true);
 
 define('APP_PATH','./app/');
@@ -15,17 +17,15 @@ if (ini_get('magic_quotes_gpc')) {
      function stripslashesRecursive(array $array)
      {
           foreach ($array as $k => $v) {
-               if (is_string($v)) {
-                    $array[$k] = stripslashes(trim($v));
-               } else if (is_array($v)) {
-                    $array[$k] = stripslashesRecursive($v);
-               }
+               if (is_string($v))       $array[$k] = stripslashes(trim($v));
+               else if (is_array($v))   $array[$k] = stripslashesRecursive($v);
+
           }
           return $array;
      }
  
-     if($_GET)$_GET = stripslashesRecursive($_GET);
-     if($_POST)$_POST = stripslashesRecursive($_POST);
+     $_GET and $_GET = stripslashesRecursive($_GET);
+     $_POST and $_POST = stripslashesRecursive($_POST);
 }
 function array_safe_replace(array $array) {
 	foreach ($array as $k => $v) {

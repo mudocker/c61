@@ -1,6 +1,7 @@
 <?php
 namespace Home\Controller;
-use Think\Controller;
+use xl\app\Home\Controller\publics\Login;
+
 class PublicController extends CommonController {
 	public $linkinfo = null;
 	public function __construct(){
@@ -8,11 +9,7 @@ class PublicController extends CommonController {
 	}
 
 	function login(){ 
-		if($_SESSION['userinfo']){
-			$this->error('你已经登录,请到游戏大厅进行游戏',U('Index/lottery'));
-		}else{
-			$this->display();
-		}
+		$_SESSION['userinfo']? $this->error('你已经登录,请到游戏大厅进行游戏',U('Index/lottery')):$this->display();
 
 	}
 	function register(){
@@ -356,78 +353,12 @@ class PublicController extends CommonController {
 		echo json_encode(array('status'=>$status,'info'=>$info));
 	}
 	function LoginDo(){
-		if(!IS_POST){echo json_encode(["sign"=>false,"message"=>"非法操作"]);exit;} //如果不是POST提交就返回FASE
-		$param = I('post.');
-		if(empty($param['nocode']))
-		{
-				if(!$param['name'] | !$param['pass'] /*| !$param['code']*/){
-					echo jsonreturn(["sign"=>false,"message"=>"登录信息不完整"]);
-					exit;
-				}
-/*				$verify = new \Think\Verify(['reset' => false]);
-				if(!$verify->check($param['code'])) {
-					echo jsonreturn(["sign"=>false,"message"=>"验证码错误"]);
-					exit;
-				}*/
-		}
-		//验证用户名
-		/*if(!$param['name'] || !preg_match("/^[a-zA-Z][a-zA-Z\d]{4,12}$/",$param['name'])){
-			$return = [];
-			$return['sign']    = false;
-			$return['message'] = '请输入4-12位的用户名,必须以字母开通头!';
-			echo jsonreturn($return);exit;
-		}*/
-		if(!$param['name'] || strlen($param['name'])<3){  //如果用户名不存在 或 少于3位则返回错误
-			$return = [];
-			$return['sign']    = false;
-			$return['message'] = '请输入正确用户名!';
-			echo jsonreturn($return);exit;
-		}
-		if(!$param['pass'] && !preg_match("/^[\w\W]{6,16}$/",$param['pass'])){ //验证密码
-			$return = [];
-			$return['sign']    = false;
-			$return['message'] = '请输入6-16位的登陆密码';
-			echo jsonreturn($return);exit;
-		}
-		$data = [];
-		$data['username'] = $param['name'];
-		$data['nocode'] = $param['nocode'];
-		$data['password'] = $param['pass'];
-		$data['loginip']  = get_client_ip();
-		$data['source']   = 'pc';
-		$userinfo = M('Member')->field('id,loginip,logintime')->cache(300)->where("username='{$param['name']}'")->find();
-		$apiparam=array();
-		$apiparam['data'] = $data;
-		$_api = new \Lib\api;
-		$Result = [];
-		$Result = $_api->sendHttpClient('Api/Member/signin',$apiparam);
-		if(is_array($Result) && $Result['sign']==true){
-			$return['sign']    = true;
-			$return['message'] = '登陆成功';
-			//保存登陆信息
-			if($Result['auth']['member_auth_id'] && $Result['auth']['member_sessionid']){
-				session('member_sessionid',$Result['auth']['member_sessionid']);
-				session('member_auth_id',$Result['auth']['member_auth_id']);
-				$lastlogin['lastip'] = $userinfo['loginip'] ;
-				$lastlogin['lasttime'] = date("Y-m-d H:i:s",$userinfo['logintime']) ;
-				$lastlogin['login_address'] =json_decode(getIpAddress($lastlogin['lastip']))->province.",".json_decode(getIpAddress($lastlogin['lastip']))->city;
-				session('lastlogin',$lastlogin);
+        Login::paramAbort();
+        Login::usernamePwdAbort();                                                                                      //用户名,密码规范
+        Login::httpLogin();                                                                                              //httpclient登录
+        Login::ret();
 
-/*				$okamountcount = M('touzhu')->cache(300)->where("isdraw=1 AND uid='{$Result['auth']['member_auth_id']}' ")->SUM('okamount');
- 				$k3names = M('touzhu')->cache(300)->distinct ( true )->where ("uid='{$Result['auth']['member_auth_id']}' ")->field ( 'cptitle,cpname' )->limit(8)->select();
-				session("okamountcount",$okamountcount);
-				session("k3names",$k3names);*/
-				$return['data']['islogin'] = '1';
-			}
-			$this->ajaxReturn($return);exit;
-		}else{
-			$Result['sign']    = false;
-			$Result['message'] = $Result['message']?$Result['message']:'登陆失败';
-			$this->ajaxReturn($Result);exit;
-		}
-		exit;
-		
-	}
+    }
 	function LoginOut(){
 	    M('membersession')->where("userid='{$_SESSION['userinfo']['id']}'")->delete();
 		session('userinfo',null);

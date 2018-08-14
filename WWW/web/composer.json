@@ -1,0 +1,32 @@
+{
+    "name": "xl/admin",
+    "type": "n\u001f\u001f",
+    "authors": [
+        {
+            "name": "mudocker",
+            "email": "mudocker@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">5.3.0"
+    },
+    "autoload": {
+        "files": [
+        ],
+        "psr-4": {
+            "xl\\": "./"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    }
+}

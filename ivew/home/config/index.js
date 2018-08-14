@@ -6,9 +6,9 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
           '/index.php': {
-              target:'http://s.cn',
+              target:'http://l.cn',
               changeOrigin: true,
-              headers: { Origin: 's.cn'},
+              headers: { Origin: 'l.cn'},
               secure: false
           }
       },

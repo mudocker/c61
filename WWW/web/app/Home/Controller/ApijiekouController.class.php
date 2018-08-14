@@ -280,11 +280,10 @@ class ApijiekouController extends \Common\Controller\ApijiekouController {
 		$apiparam['lotteryname'] = $lotteryname;
 		$apiparam['expect'] = $expect;
 		$_api = new \Lib\api;
-		//dump($apiparam);exit;
+
 		$_obj = A('Api/Lottery');
 		$result = $_obj->loadopencode($apiparam);
-		//dump($result);exit;
-		//dump(R("Api/Lottery/loadopencode",$apiparam));exit;
+
 		$Result = $_api->sendHttpClient('Api/Lottery/loadopencode',$apiparam);
 		echo jsonreturn($Result);
 	}

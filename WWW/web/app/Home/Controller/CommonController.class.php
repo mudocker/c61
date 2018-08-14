@@ -105,4 +105,36 @@ class CommonController extends Controller {
 			}
 		}
 	}
+
+    function abort($data,$msg=null,$code=null){
+        $class=new stdClass();
+        if($code==null) $code=  ($data==null||$data==false)?-1:200;
+        $class->code=$code;
+        $class->result=$data;
+        if ($msg==null) $msg=  ($data==null||$data==false)?'data==操作失败':'data=操作成功';
+
+        $class->msg=$msg;
+
+        exit(json_encode($class,JSON_UNESCAPED_UNICODE));
+    }
+
+
+    public static function ajax($data,$type='') {
+        empty($type) and  $type  =   C('DEFAULT_AJAX_RETURN');
+        switch (strtoupper($type)){
+            case 'JSON' :                                                                                               // JSON
+                header('Content-Type:application/json; charset=utf-8');
+                exit(json_encode($data));
+            case 'XML'  :                                                                                              // XML
+                header('Content-Type:text/xml; charset=utf-8');
+                exit(xml_encode($data));
+            case 'JSONP':                                                                                              // JSONP
+                header('Content-Type:application/json; charset=utf-8');
+                $handler  =   isset($_GET[C('VAR_JSONP_HANDLER')]) ? $_GET[C('VAR_JSONP_HANDLER')] : C('DEFAULT_JSONP_HANDLER');
+                exit($handler.'('.json_encode($data).');');
+            case 'EVAL' :                                                                                               //js脚本
+                header('Content-Type:text/html; charset=utf-8');
+                exit($data);
+        }
+    }
 }

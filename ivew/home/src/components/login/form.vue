@@ -25,7 +25,14 @@
         methods:{
             login(){
                   debugger
-                  this.post(api.user.login+'?XDEBUG_SESSION_START=16249',this.params,'操作成功','操作异常');
+                  this.post(api.user.login+'?XDEBUG_SESSION_START=14884',this.params,function (res) {
+
+                    this.$router.push( Vue.config.apiUrl)
+
+                  },function (res) {
+                    debugger
+                    console.log(res);
+                  });
             },
         }
     }
