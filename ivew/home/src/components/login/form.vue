@@ -24,11 +24,9 @@
         },
         methods:{
             login(){
-                  debugger
-                  this.post(api.user.login+'?XDEBUG_SESSION_START=14884',this.params,function (res) {
 
-                    this.$router.push( Vue.config.apiUrl)
-
+                  this.post(api.user.login,this.params,function (res) {
+                    Vue.router.push( Vue.config.apiUrl)
                   },function (res) {
                     debugger
                     console.log(res);

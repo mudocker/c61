@@ -17,5 +17,4 @@ Vue.use(axiosz);
 let vm=new Vue({el: '#app', router,
     components:    {App},
     template:      '<App/>'
-
 })
