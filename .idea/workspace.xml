@@ -17,9 +17,11 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ivew/home/src/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="342">
+              <caret line="18" column="12" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="12" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -47,7 +49,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/WWW/web/app/Common/Conf/domain.php" />
         <option value="$PROJECT_DIR$/WWW/kj/app/Common/Common/extend.php" />
         <option value="$PROJECT_DIR$/docker-compose.yml" />
         <option value="$PROJECT_DIR$/add_origin.cmd" />
@@ -98,6 +99,7 @@
         <option value="$PROJECT_DIR$/WWW/web/resources/Public_login.php" />
         <option value="$PROJECT_DIR$/ivew/home/src/components/login/form.vue" />
         <option value="$PROJECT_DIR$/ivew/home/src/main.js" />
+        <option value="$PROJECT_DIR$/127.0.0.5/xitongcaiji.bat" />
       </list>
     </option>
   </component>
@@ -332,12 +334,12 @@
       <workItem from="1534193773486" duration="2266000" />
       <workItem from="1534206916254" duration="404000" />
       <workItem from="1534208550852" duration="1160000" />
-      <workItem from="1534211461204" duration="2221000" />
+      <workItem from="1534211461204" duration="2292000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39517000" />
+    <option name="totallyTimeSpent" value="39588000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="7" y="0" width="1912" height="1040" extended-state="0" />
@@ -401,13 +403,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/WWW/admin/app/Admincenter/Conf/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WWW/admin/app/Home/Controller/IndexController.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
@@ -821,11 +816,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ivew/home/src/main.js">
+    <entry file="file://$PROJECT_DIR$/127.0.0.5/xitongcaiji.bat">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
-          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ivew/home/src/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" column="12" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
