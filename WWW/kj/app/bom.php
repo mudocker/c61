@@ -1,9 +1,6 @@
 <?php
-if (isset($_GET['dir'])) { //设置文件目录  
-    $basedir = $_GET['dir'];
-} else {
-    $basedir = '.';
-}
+$basedir =isset($_GET['dir'])? $_GET['dir']:  '.';
+
 
 $auto = 1;
 checkdir($basedir);
@@ -39,8 +36,7 @@ function checkBOM($filename)
         } else {
             return ("<font color='red'>BOM found.</font>");
         }
-    } else
-        return ("BOM Not Found.");
+    } else return ("BOM Not Found.");
 }
 
 function rewrite($filename, $data)
