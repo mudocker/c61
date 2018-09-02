@@ -4,7 +4,7 @@ use Think\Controller;
 class KjController extends Controller {
 	public function _initialize(){
 		header("Content-type: text/html; charset=utf-8");
-// 		if(!IS_CLI)exit('IS NOT CMD_CLI,ERROR...');
+
 	}
 	function _t($str='',$num=20,$pad =' '){
 		$str = iconv('UTF-8','gbk',$str);
@@ -24,9 +24,8 @@ class KjController extends Controller {
 			'zm5lmda','zm5lmxiao','zm5lmdan','zm5lmshuang','zm5lmdadan','zm5lmdashuang','zm5lmxiaodan','zm5lmxiaoshuang','zm5lmheda','zm5lmhexiao','zm5lmhedan','zm5lmheshuang','zm5lmweida','zm5lmweixiao','zm5lmjiaqin','zm5lmyeshou','zm5lmhongbo','zm5lmlvbo','zm5lmlanbo',
 			'zm6lmda','zm6lmxiao','zm6lmdan','zm6lmshuang','zm6lmdadan','zm6lmdashuang','zm6lmxiaodan','zm6lmxiaoshuang','zm6lmheda','zm6lmhexiao','zm6lmhedan','zm6lmheshuang','zm6lmweida','zm6lmweixiao','zm6lmjiaqin','zm6lmyeshou','zm6lmhongbo','zm6lmlvbo','zm6lmlanbo',
 		];
-	    if($runcount==0){
-			$this->_title();
-		}
+	    $runcount==0 and  $this->_title();
+
 		$memberdb    = D('member');
 		$fuddetaildb = D('fuddetail');
 		$touzhudb    = D('touzhu');
@@ -52,11 +51,9 @@ class KjController extends Controller {
 					}
 					$opencodes = explode(',',$item['opencode']);
 					$item['iszjokcount'] = $_obj->$playsonid($opencodes[$key],$item['tzcode'],$playsonid);
-				}else{
-					if(method_exists($_obj,$playid)){//如果类方法存在
-						$item['iszjokcount'] = $_obj->$playid($item['opencode'],$item['tzcode']);
-					}
-				}
+				}else method_exists($_obj,$playid) and $item['iszjokcount'] = $_obj->$playid($item['opencode'],$item['tzcode']);
+
+
 			}
 			//处理中奖信息
 			$memint = $touzhuint = $fudint = 0;
@@ -127,9 +124,8 @@ class KjController extends Controller {
 			echo auto_charset("休眠3s",'utf-8','gbk');
 			sleep(3);
 		}
-		if($totalzxnum<120){
-			self::check($totalzxnum+1,$runcount);
-		}
+		if($totalzxnum<120) self::check($totalzxnum+1,$runcount);
+
 	}
 	protected function lhc($res){
 		$okamount = 0;
@@ -158,14 +154,10 @@ class KjController extends Controller {
 		$okamount = 0;
 		if(strstr($res["mode"],'|')){
 			$amount = explode('|',$res["mode"]);
-			for($i=0;$i<count($amount);$i++){
-				if($res['iszjokcount'][$i]!=0){
-					$okamount = $amount[$i]*$res['iszjokcount'][$i]*$res['beishu']*$res['yjf'];
-			 }
-			}
-		}else{
-			$okamount =$res['mode']*$res['zjcount']*$res['beishu']*$res['yjf'];
-		}
+			for($i=0;$i<count($amount);$i++) if($res['iszjokcount'][$i]!=0)$okamount = $amount[$i]*$res['iszjokcount'][$i]*$res['beishu']*$res['yjf'];
+
+		}else $okamount =$res['mode']*$res['zjcount']*$res['beishu']*$res['yjf'];
+
 		return $okamount;
 	}
 	protected function pk10($res){
@@ -181,13 +173,11 @@ class KjController extends Controller {
 		if(strstr($res["mode"],'|')){
 			$mode = explode('|',$res["mode"]);
 			for($i=0;$i<count($mode);$i++){
-				if($res['iszjokcount'][$i]!=""){
-					$okamount += $mode[$i]*$res['iszjokcount'][$i]*$res['beishu']*$res['yjf'];
-				}
+				if($res['iszjokcount'][$i]!="") $okamount += $mode[$i]*$res['iszjokcount'][$i]*$res['beishu']*$res['yjf'];
+
 			}
-		}else{
-			$okamount =$res['mode']*$res['zjcount']*$res['beishu']*$res['yjf'];
-		}
+		}else $okamount =$res['mode']*$res['zjcount']*$res['beishu']*$res['yjf'];
+
 		return $okamount;
 
 	}

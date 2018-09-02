@@ -7,7 +7,7 @@ class CaijiController extends Controller {
 	}
 	function apicaiji($totalzxnum=0){
 		_title();
-		//if(!IS_CLI)exit('IS NOT CMD_CLI,ERROR...');
+
 		$caijisets = unserialize(GetVar('caijiset'));
 		include(COMMON_PATH.'Lib/apiurls.php');
 		$dir = COMMON_PATH. 'Lib/apicaiji'; 
@@ -39,7 +39,7 @@ class CaijiController extends Controller {
 		$totalzxnum++;
 		 sleep(3);
 		 ob_clean();
-		/* if($totalzxnum<=120) */	self::apicaiji($totalzxnum);
+		self::apicaiji($totalzxnum);
 
 	}
 	function apicaijik3($totalzxnum=0){
@@ -53,11 +53,9 @@ class CaijiController extends Controller {
 		foreach($filelist as $k=>$v){
 			$basename = basename($v);
 			$name = substr($basename,0,strpos($basename,'.'));
-			 if(strstr($name,'k3')){
-				 if(strpos($basename,'.class.php')!=false && $caijisets[$name]){
-					 $apis[$name] = "\\Lib\\apicaiji\\{$name}";
-				 }
-			 }
+			 if(strstr($name,'k3')) (strpos($basename,'.class.php')!=false && $caijisets[$name])and  $apis[$name] = "\\Lib\\apicaiji\\{$name}";
+
+
 		}
 		$caijieapiurl = GetVar('caijieapiurl');
 		foreach($apis as $k=>$api){
@@ -89,10 +87,9 @@ class CaijiController extends Controller {
 		foreach($filelist as $k=>$v){
 			$basename = basename($v);
 			$name = substr($basename,0,strpos($basename,'.'));
-			if(strpos($basename,'.class.php')!=false && $caijisets[$name]){
-				$apis[$name] = "\\Lib\\xitongcaiji\\{$name}";
+			strpos($basename,'.class.php')!=false && $caijisets[$name] and $apis[$name] = "\\Lib\\xitongcaiji\\{$name}";
 
-			}
+
 		}
 		foreach($apis as $k=>$api){
 			$return  = '';
